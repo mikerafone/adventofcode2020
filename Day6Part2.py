@@ -11,16 +11,18 @@ groups = rawdata.split("\n\n")   #split the file into individual boarding passes
 totalQuestions = 0
 
 for g in groups:
-    g = g.replace("\n","")
-    distinctQuestions = ''.join(set(g))
-    #print(g)
-    #print(distinctQuestions)
-    totalQuestions += len(distinctQuestions)
+    person = g.split("\n")
+    person1answers = person[0]
+    numQuestions = 0
+    for a in person1answers:
+        numOcc = 0
+        for p in person:
+            if a in p:
+                numOcc +=1
+        if numOcc == len(person):
+            numQuestions +=1
+    totalQuestions += numQuestions
 
 print(str(totalQuestions))
 
 InputFile_h.close()
-
-    
-
-
